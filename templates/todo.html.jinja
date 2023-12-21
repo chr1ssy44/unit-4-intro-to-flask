@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>my todo list</title>
+</head>
+<body>
+<h2 style="color:lightskyblue;text-align:center;text-decoration:underline">MY TODO LIST</h2>
+<ul>
+{%for todo in my_todos %}
+<li style="text-align:center;color:darkgrey">{{todo}}</li>
+{%endfor%}
+</ul>
+
+<form method="post">
+<input name= "new_todo">
+<input type = "submit">
+</form>
+
+</body>
+</html>
