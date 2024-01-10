@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>my todo list</title>
-</head>
-<body>
-<h2 style="color:lightskyblue;text-align:center;text-decoration:underline">MY TODO LIST</h2>
-<ul>
-{%for todo in my_todos %}
-<li 
-style="color:darkgrey">{{todo}}
-    <form method="post" action="/delete_todo/{{loop.index0}}">
-        <input type="submit" value="delete">
-    </form>
-</li>
-{%endfor%}
-</ul>
 
-<form method="post">
-    <input name= "new_todo">
-    <input type = "submit">
-</form>
+<head>
+    <title>my todo list</title>
+    <style>
+        .complete {
+            text-decoration: line-through;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body style="border-style:solid;border-radius:7px;border-color:rgb(205, 229, 238)">
+    <h2 style="color:rgb(70, 142, 236);text-align:center;text-decoration:underline">MY TODO LIST</h2>
+    <ul>
+        {%for todo in my_todos %}
+        <li >
+            {{ todo ['description'] }}
+            <form method="POST" action="/delete_todo/{{ todo['id']}}">
+                <input type="submit" value="delete">
+            </form>
+
+            {% if todo['complete'] %}✅{% endif %}
+            <form method="POST" action="/complete_todo/{{ todo['id']}}">
+            <input type="submit" value="mark complete">
+            </form>
+        </li>
+        {%endfor%}
+
+    </ul>
+
+    <form method="post">
+        <input name="new_todo">
+        <input type="submit">
+    </form>
 
 </body>
+
 </html>
